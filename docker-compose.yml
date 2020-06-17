@@ -40,7 +40,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ngao
+    container_name: ngaoussd_api
     volumes:
       - ./src:/var/www/html
     ports:
