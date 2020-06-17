@@ -19,16 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //list data in ussd
-Route::get('ussddata', 'NgaoController@index');
+Route::get('getdata', 'NgaoController@index');
 
 //list specific data
-Route::get('ussddata/{id}', 'NgaoController@show');
+Route::get('getdata/{id}', 'NgaoController@show');
 
 //add new data
-Route::post('ussddata', 'NgaoController@store');
+Route::post('postdata', 'NgaoController@store');
 
 //update data
-Route::put('ussddata', 'NgaoController@store');
+Route::put('putdata', 'NgaoController@store');
 
 //delete data
-Route::delete('ussddata/{id}', 'NgaoController@destroy');
+Route::delete('deletedata/{id}', 'NgaoController@destroy');
