@@ -40,40 +40,6 @@ class NgaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        dd('eeeeeeeee');
-        // dd($request);
-        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
-     
-
-        // $ngao->ngao_id = $request->input('ngao_id');
-        $ngao->customeridnumber = $request->input('customeridnumber');
-        $ngao->customermobilenumber = $request->input('customermobilenumber');
-        $ngao->loanproduct = $request->input('loanproduct');
-        $ngao->loanamount = $request->input('loanamount');
-        $ngao->loanterm = $request->input('loanterm');
-        $ngao->customerfullnames = $request->input('customerfullnames');
-        $ngao->loanapplicationdate = $request->input('loanapplicationdate');
-
-        if($ngao->save()){
-            return response()->json([
-                'responsecode' => '200',
-                'response' => 'Success',
-                'status' => 'Processing'
-
-            ]);
-        }
-        if(!$ngao->save()){
-            return response()->json([
-                'responsecode' => '-1',
-                'response' => 'Failed',
-                'status' => 'Pending loan application'
-            ]);
-        }
-
-    }
-
     /**
      * Display the specified resource.
      *
