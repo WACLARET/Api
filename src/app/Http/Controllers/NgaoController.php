@@ -17,8 +17,9 @@ class NgaoController extends Controller
     //This shows all the data in the database 
     public function index()
     {
-        dd('eeeeeeeee');
+        
        $ngao = Ussd::paginate(15);
+       dd('eeeeeeeee');
        //Return collection of articles as a resource
        return Ussddata::collection( $ngao);
     }
