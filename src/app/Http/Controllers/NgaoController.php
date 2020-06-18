@@ -17,6 +17,7 @@ class NgaoController extends Controller
     //This shows all the data in the database 
     public function index()
     {
+        dd('eeeeeeeee');
        $ngao = Ussd::paginate(15);
        //Return collection of articles as a resource
        return Ussddata::collection( $ngao);
@@ -41,7 +42,7 @@ class NgaoController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
+        // dd($request);
         $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
 
         // $ngao->ngao_id = $request->input('ngao_id');
