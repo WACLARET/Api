@@ -77,12 +77,13 @@ class NgaoController extends Controller
         }
         if(!$number){
             if($ngao->save()){
-                return response()->json([
-                    'responsecode' => '200',
-                    'response' => 'Success',
-                    'status' => 'Processing'
+                // return response()->json([
+                //     'responsecode' => '200',
+                //     'response' => 'Success',
+                //     'status' => 'Processing'
         
-                ]);
+                // ]);
+                return 'Advance successfully applied.';
             }
         
             if(!$ngao->save()){
