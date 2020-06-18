@@ -19,9 +19,10 @@ class NgaoController extends Controller
     {
         
        $ngao = Ussd::paginate(15);
-       dd('eeeeeeeee');
+      
        //Return collection of articles as a resource
        return Ussddata::collection( $ngao);
+       dd('eeeeeeeee');
     }
 
     /**
