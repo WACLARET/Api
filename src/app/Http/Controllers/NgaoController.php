@@ -41,7 +41,10 @@ class NgaoController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);die();
+        $input = $request->all();
+        print_r($input);die();
+        $number = Ussd::where('customeridnumber', '=', $request->customeridnumber)->first();
+        // dd($user);
         $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
 
         // $ngao->ngao_id = $request->input('ngao_id');
@@ -53,21 +56,35 @@ class NgaoController extends Controller
         $ngao->customerfullnames = $request->input('customerfullnames');
         $ngao->loanapplicationdate = $request->input('loanapplicationdate');
 
-        if($ngao->save()){
-            return response()->json([
-                'responsecode' => '200',
-                'response' => 'Success',
-                'status' => 'Processing'
+       
 
-            ]);
-        }
-        if(!$ngao->save()){
+        if ($number) {
             return response()->json([
-                'responsecode' => '-1',
-                'response' => 'Failed',
-                'status' => 'Pending loan application'
+                'responsecode' => '400',
+                'response' => 'Transactions with the Customeridnumber, request not saved',
+                'status' => 'Failed'
+        
             ]);
         }
+        if(!$number){
+            if($ngao->save()){
+                return response()->json([
+                    'responsecode' => '200',
+                    'response' => 'Success',
+                    'status' => 'Processing'
+        
+                ]);
+            }
+        
+            if(!$ngao->save()){
+                return response()->json([
+                    'responsecode' => '-1',
+                    'response' => 'Failed',
+                    'status' => 'Pending loan application'
+                ]);
+            }
+        }
+        
 
     }
 
@@ -125,3 +142,25 @@ class NgaoController extends Controller
         }
     }
 }
+
+
+
+
+
+
+
+// if($ngao->save()){
+//     return response()->json([
+//         'responsecode' => '200',
+//         'response' => 'Success',
+//         'status' => 'Processing'
+
+//     ]);
+// }
+// if(!$ngao->save()){
+//     return response()->json([
+//         'responsecode' => '-1',
+//         'response' => 'Failed',
+//         'status' => 'Pending loan application'
+//     ]);
+// }
