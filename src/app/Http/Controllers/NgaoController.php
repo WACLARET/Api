@@ -41,8 +41,8 @@ class NgaoController extends Controller
     public function store(Request $request)
     {
 
-        // $input = $request->all();
-        // print_r($input);die();
+        $input = $request->all();
+        print_r($input);die();
         $number = Ussd::where('customeridnumber', '=', $request->customeridnumber)->first();
         // dd($user);
         $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
