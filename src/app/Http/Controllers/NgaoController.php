@@ -22,7 +22,6 @@ class NgaoController extends Controller
       
        //Return collection of articles as a resource
        return Ussddata::collection( $ngao);
-       dd('eeeeeeeee');
     }
 
     /**
@@ -43,9 +42,10 @@ class NgaoController extends Controller
      */
     public function store(Request $request)
     {
-
+        dd('eeeeeeeee');
         // dd($request);
         $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
+     
 
         // $ngao->ngao_id = $request->input('ngao_id');
         $ngao->customeridnumber = $request->input('customeridnumber');
