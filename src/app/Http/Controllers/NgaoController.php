@@ -41,8 +41,8 @@ class NgaoController extends Controller
     public function store(Request $request)
     {
 
-        $input = $request->all();
-        print_r($input);die();
+        // $input = $request->all();
+        // print_r($input);die();
         $number = Ussd::where('customeridnumber', '=', $request->customeridnumber)->first();
         // dd($user);
         $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
@@ -60,11 +60,11 @@ class NgaoController extends Controller
 
         if ($number) {
             return response()->json([
+
                 'responsecode' => '400',
-                'response' => 'Transactions with the Customeridnumber, request not saved',
-                'status' => 'Failed'
-        
-            ]);
+                'message' => 'Transactions with the Customeridnumber exist, request not saved'], 400);
+                
+            // ]);
         }
         if(!$number){
             if($ngao->save()){
