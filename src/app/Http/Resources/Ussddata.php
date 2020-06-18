@@ -17,13 +17,12 @@ class Ussddata extends JsonResource
         // return parent::toArray($request);
         return[
             'id' => $this->id,
-            'customeridnumber' => $this->customeridnumber,
-            'customermobilenumber' => $this->customermobilenumber,
-            'loanproduct' => $this->loanproduct,
-            'loanamount' => $this->loanamount,
-            'loanterm' => $this->loanterm,
-            'customerfullnames' => $this->customerfullnames,
-            'loanapplicationdate' => $this->loanapplicationdate
+            'session_id' => $this->session_id,
+            'msisdn' => $this->msisdn,
+            'Amount' => $this->Amount,
+            'id_number' => $this->id_number,
+            'confirm' => $this->confirm,
+            
         ];
     }
 }
