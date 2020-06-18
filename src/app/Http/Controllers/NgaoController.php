@@ -43,16 +43,16 @@ class NgaoController extends Controller
 
         // $input = $request->all();
         // print_r($input);die();
-        $number = Ussd::where('customeridnumber', '=', $request->customeridnumber)->first();
+        $number = Ussd::where('session_id', '=', $request->session_id)->first();
         // dd($user);
         $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Ussd;
 
         // $ngao->ngao_id = $request->input('ngao_id');
-        $ngao->customeridnumber = $request->input('session_id');
-        $ngao->customermobilenumber = $request->input('msisdn');
-        $ngao->loanproduct = $request->input('Amount');
-        $ngao->loanamount = $request->input('id_number');
-        $ngao->loanterm = $request->input('confirm');
+        $ngao->session_id = $request->input('session_id');
+        $ngao->msisdn = $request->input('msisdn');
+        $ngao->Amount = $request->input('Amount');
+        $ngao->id_number = $request->input('id_number');
+        $ngao->confirm = $request->input('confirm');
         
 
 
