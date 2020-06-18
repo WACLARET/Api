@@ -16,22 +16,10 @@ class CreateUssdsTable extends Migration
         Schema::create('ussds', function (Blueprint $table) {
             $table->increments('id');
             $table->Integer('session_id')->unique();
-            // $table->Integer('customeridnumber')->unique();msisdn
-
             $table->char('msisdn')->unique();
-            // $table->char('customermobilenumber');Amount
-
-            // $table->char('loanproduct');
             $table->integer('Amount');
-            // $table->integer('loanamount');id_number
-
             $table->char('id_number');
-            // $table->char('loanterm');confirm
-
             $table->char('confirm');
-            // $table->char('customerfullnames');
-
-            $table->char('loanapplicationdate');
             $table->timestamps();
         });
     }

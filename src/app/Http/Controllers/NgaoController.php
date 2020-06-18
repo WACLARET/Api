@@ -45,16 +45,25 @@ class NgaoController extends Controller
         // print_r($input);die();
         $number = Ussd::where('customeridnumber', '=', $request->customeridnumber)->first();
         // dd($user);
-        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
+        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Ussd;
 
         // $ngao->ngao_id = $request->input('ngao_id');
-        $ngao->customeridnumber = $request->input('customeridnumber');
-        $ngao->customermobilenumber = $request->input('customermobilenumber');
-        $ngao->loanproduct = $request->input('loanproduct');
-        $ngao->loanamount = $request->input('loanamount');
-        $ngao->loanterm = $request->input('loanterm');
-        $ngao->customerfullnames = $request->input('customerfullnames');
-        $ngao->loanapplicationdate = $request->input('loanapplicationdate');
+        $ngao->customeridnumber = $request->input('session_id');
+        $ngao->customermobilenumber = $request->input('msisdn');
+        $ngao->loanproduct = $request->input('Amount');
+        $ngao->loanamount = $request->input('id_number');
+        $ngao->loanterm = $request->input('confirm');
+        
+
+
+
+        // $ngao->customeridnumber = $request->input('customeridnumber');
+        // $ngao->customermobilenumber = $request->input('customermobilenumber');
+        // $ngao->loanproduct = $request->input('loanproduct');
+        // $ngao->loanamount = $request->input('loanamount');
+        // $ngao->loanterm = $request->input('loanterm');
+        // $ngao->customerfullnames = $request->input('customerfullnames');
+        // $ngao->loanapplicationdate = $request->input('loanapplicationdate');
 
        
 
