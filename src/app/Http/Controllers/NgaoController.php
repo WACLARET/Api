@@ -41,7 +41,7 @@ class NgaoController extends Controller
     public function store(Request $request)
     {
 
-        // dd('eeeeeee');
+        dd($request);
         $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->customeridnumber) : new Ussd;
 
         // $ngao->ngao_id = $request->input('ngao_id');
