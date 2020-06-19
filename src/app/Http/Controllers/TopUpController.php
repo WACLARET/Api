@@ -17,8 +17,8 @@ class TopUpController extends Controller
     public function index(Request $request)
     {
         
-        $input = $request->all();
-        print_r($input);die();
+        // $input = $request->all();
+        // print_r($input);die();
 
 
         $message = new Top_up;
