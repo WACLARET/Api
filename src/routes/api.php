@@ -38,3 +38,6 @@ Route::post('payloan', 'PayLoanController@index');
 
 //topup
 Route::post('Topup', 'TopUpController@index');
+
+//loanstatus
+Route::post('loanstatus', 'LoanStatusController@store');
