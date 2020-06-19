@@ -32,3 +32,9 @@ Route::put('putdata', 'NgaoController@store');
 
 //delete data
 Route::delete('deletedata/{id}', 'NgaoController@destroy');
+
+//pay loan
+Route::post('payloan', 'PayLoanController@index');
+
+//topup
+Route::post('Topup', 'TopUpController@index');
