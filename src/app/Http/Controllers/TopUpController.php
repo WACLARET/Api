@@ -20,10 +20,10 @@ class TopUpController extends Controller
         $input = $request->all();
         print_r($input);die();
 
-        
+
         $message = new Top_up;
         $message->msisdn = $request->input('msisdn');
-        $message->amount = $request->input('amount');
+        $message->Amount = $request->input('Amount');
         $message->confirm = $request->input('confirm');
 
 
