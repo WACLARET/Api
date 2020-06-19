@@ -16,7 +16,7 @@ class CreateTopUpsTable extends Migration
         Schema::create('top_ups', function (Blueprint $table) {
             $table->increments('id');
             $table->char('msisdn');
-            $table->integer('amount');
+            $table->integer('Amount');
             $table->integer('confirm');
             $table->timestamps();
         });

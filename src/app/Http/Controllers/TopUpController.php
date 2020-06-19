@@ -23,7 +23,7 @@ class TopUpController extends Controller
 
         $message = new Top_up;
         $message->msisdn = $request->input('msisdn');
-        $message->amount = $request->input('Amount');
+        $message->Amount = $request->input('Amount');
         $message->confirm = $request->input('confirm');
 
 
