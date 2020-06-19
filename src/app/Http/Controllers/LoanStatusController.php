@@ -15,7 +15,9 @@ class LoanStatusController extends Controller
      */
     public function index()
     {
-        //
+        $ngao = Loan_Status::paginate(15);
+// dd($ngao);
+        return($ngao);
     }
 
     /**
@@ -73,7 +75,7 @@ class LoanStatusController extends Controller
      */
     public function show($id)
     {
-        //
+   
     }
 
     /**
