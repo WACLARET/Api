@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Loan_Status;
+use App\Status;
+use DB;
 
 class LoanStatusController extends Controller
 {
@@ -13,11 +14,12 @@ class LoanStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
-        $ngao = Loan_Status::paginate(15);
-// dd($ngao);
-        return($ngao);
+        $ngao = Status::paginate(15);
+        $withdraw = DB::table('statuses')->get();
+// dd($withdraw);
+        return($withdraw);
     }
 
     /**
@@ -41,7 +43,7 @@ class LoanStatusController extends Controller
         // $input = $request->all();
         // print_r($input);die();
         
-        $message = new Loan_Status;
+        $message = new Status;
 
         $message->customeridnumber = $request->input('customeridnumber');
         $message->customermobilenumber = $request->input('customermobilenumber');

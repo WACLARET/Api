@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoanStatusesTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLoanStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('loan__statuses', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->Integer('customeridnumber');
             $table->char('customermobilenumber');
@@ -26,7 +26,7 @@ class CreateLoanStatusesTable extends Migration
             $table->char('loanterm');
             $table->char('customerfullnames');
             $table->char('loanapplicationdate');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 
@@ -37,6 +37,6 @@ class CreateLoanStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loan__statuses');
+        Schema::dropIfExists('statuses');
     }
 }
