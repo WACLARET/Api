@@ -30,12 +30,13 @@ class TopUpController extends Controller
         // $message->save();
 
         if($message->save()){
-            return response()->json([
-                'responsecode' => '200',
-                'response' => 'Success',
-                'status' => 'Processing'
+            // return response()->json([
+            //     'responsecode' => '200',
+            //     'response' => 'Success',
+            //     'status' => 'Processing'
     
-            ]);
+            // ]);
+            return 'Successfully Deposited.';
         }
     }
 
