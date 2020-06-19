@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Loan;
-use App\Http\Resources\Ussddata;
+// use App\Http\Resources\Ussddata;
 
 class PayLoanController extends Controller
 {
