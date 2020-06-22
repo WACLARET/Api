@@ -30,7 +30,7 @@ class LoanStatusController extends Controller
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
         // return($withdraw);
-        return "Your loan is  $withdraw ";
+        return "Your loan is  $withdraw loan ";
     }
 
     /**
