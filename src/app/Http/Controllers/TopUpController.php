@@ -36,7 +36,7 @@ class TopUpController extends Controller
             //     'status' => 'Processing'
     
             // ]);
-            return 'Successfully Deposited.';
+            return "$message->Amount = $request Successfully been Deposited.";
         }
     }
 

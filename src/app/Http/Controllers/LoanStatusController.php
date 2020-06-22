@@ -13,13 +13,21 @@ class LoanStatusController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
-    public function index() 
+     */ 
+    public function index(Request $request) 
     {
-        $ngao = Status::paginate(15);
-        $withdraw = DB::table('statuses')->get();
+        $message = new Status;
+        $message->customeridnumber = $request->input('customeridnumber');
+        $message->customermobilenumber = $request->input('customermobilenumber');
+        
+        // dd($message);
+        // $ngao = Status::paginate(15);
+        $withdraw = DB::table('statuses')->value('loanbalance');
+        // dd($withdraw);
+        // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
-        return($withdraw);
+        // return($withdraw);
+        return "Your loanbalance for account number $message->customermobilenumber id number $message->customeridnumber is $withdraw ";
     }
 
     /**
