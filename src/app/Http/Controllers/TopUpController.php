@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Top_up;
+use DB;
 
 class TopUpController extends Controller
 {
@@ -20,6 +21,11 @@ class TopUpController extends Controller
         // $input = $request->all();
         // print_r($input);die();
 
+        $Check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+        $amount = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('Amount');
+        $amt_sum = DB::table('top_ups')->where('msisdn', '=' , $request->msisdn )->pluck("Amount")->sum();
+
+        // dd($amt_sum); 
 
         $message = new Top_up;
         $message->msisdn = $request->input('msisdn');
@@ -27,17 +33,24 @@ class TopUpController extends Controller
         $message->confirm = $request->input('confirm');
 
 
-        // $message->save();
 
-        if($message->save()){
-            // return response()->json([
-            //     'responsecode' => '200',
-            //     'response' => 'Success',
-            //     'status' => 'Processing'
-    
-            // ]);
-            return "ksh $message->Amount has Successfully been Deposited to account number $message->msisdn.";
+
+        // $message->save();
+        if($Check_number){
+            $message->save();
+            return "Loan topup for amount KSH.$message->Amount has been topped for loan amount KSH.$amt_sum ";
+            
         }
+// dd('kkkkkkkkkk');
+//         if($message->save()){
+//             // return response()->json([
+//             //     'responsecode' => '200',
+//             //     'response' => 'Success',
+//             //     'status' => 'Processing'
+    
+//             // ]);
+//             return "ksh $message->Amount has Successfully been Deposited to account number $message->msisdn.";
+//         }
     }
 
     /**
