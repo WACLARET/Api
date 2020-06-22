@@ -40,6 +40,6 @@ Route::post('payloan', 'PayLoanController@index');
 Route::post('Topup', 'TopUpController@index');
 
 //loanstatus
-// Route::post('loanstatus', 'LoanStatusController@store');
+Route::post('loanstatus', 'LoanStatusController@store');
 
-Route::get('loanstatus', 'LoanStatusController@index');
+// Route::get('loanstatus', 'LoanStatusController@index');
