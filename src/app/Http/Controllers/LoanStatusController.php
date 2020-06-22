@@ -17,10 +17,10 @@ class LoanStatusController extends Controller
     public function index(Request $request) 
     {
         $message = new Status;
-        $message1->msisdn = $request->input('msisdn');
+        $message->customeridnumber = $request->input('customeridnumber');
         $message->customermobilenumber = $request->input('customermobilenumber');
         
-        dd($message1);
+        dd($message);
         // $ngao = Status::paginate(15);
         $withdraw = DB::table('statuses')->value('loanbalance');
         // dd($withdraw);
