@@ -36,7 +36,7 @@ class TopUpController extends Controller
             //     'status' => 'Processing'
     
             // ]);
-            return "ksh $message->Amount has Successfully been Deposited.";
+            return "ksh $message->Amount has Successfully been Deposited to account number $message->msisdn.";
         }
     }
 
