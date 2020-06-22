@@ -25,7 +25,7 @@ class TopUpController extends Controller
         $amount = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('Amount');
         $amt_sum = DB::table('top_ups')->where('msisdn', '=' , $request->msisdn )->pluck("Amount")->sum();
 
-        dd($request); 
+        // dd($request); 
         print_r();die();
 
         $message = new Top_up;
