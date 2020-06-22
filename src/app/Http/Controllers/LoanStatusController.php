@@ -24,12 +24,13 @@ class LoanStatusController extends Controller
         
         // dd($message);
         // $ngao = Status::paginate(15);
-        $withdraw = DB::table('statuses')->value('loanbalance');
+        // $withdraw = DB::table('statuses')->value('loanbalance');
+        $withdraw = DB::table('statuses')->value('loanstatus');
         // dd($withdraw);
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
         // return($withdraw);
-        return "Your loanbalance is $withdraw ";
+        return "Your loan is  $withdraw ";
     }
 
     /**
