@@ -16,6 +16,8 @@ class LoanStatusController extends Controller
      */ 
     public function index(Request $request) 
     {
+        dd($request);
+        // print_r($request);die();
         $message = new Status;
         $message->customeridnumber = $request->input('customeridnumber');
         $message->customermobilenumber = $request->input('customermobilenumber');
