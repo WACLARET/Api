@@ -43,3 +43,6 @@ Route::post('Topup', 'TopUpController@index');
 // Route::post('loanstatus', 'LoanStatusController@store');
 
 Route::get('loanstatus', 'LoanStatusController@index');
+
+//statement
+Route::get('statement', 'LoanStatusController@show');

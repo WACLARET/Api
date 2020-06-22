@@ -86,9 +86,12 @@ class LoanStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-   
+        $withdraw = DB::table('top_ups')->value('Amount');
+
+        // dd($withdraw);
+       return "You have a Balance of KSH.$withdraw. Thank you";
     }
 
     /**
