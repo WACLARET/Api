@@ -19,9 +19,8 @@ class LoanStatusController extends Controller
         $message = new Status;
         $message->customeridnumber = $request->input('customeridnumber');
         $message->customermobilenumber = $request->input('customermobilenumber');
-        $ngao->msisdn = $request->input('msisdn');
         
-        dd($ngao);
+        // dd($message);
         // $ngao = Status::paginate(15);
         $withdraw = DB::table('statuses')->value('loanbalance');
         // dd($withdraw);
