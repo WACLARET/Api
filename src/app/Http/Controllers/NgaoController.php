@@ -83,7 +83,7 @@ class NgaoController extends Controller
                 //     'status' => 'Processing'
         
                 // ]);
-                return 'Advance successfully applied.';
+                return "Your advance of ksh $ngao->Amount has been successfully applied.";
             }
         
             if(!$ngao->save()){
