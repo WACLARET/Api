@@ -68,21 +68,16 @@ class NgaoController extends Controller
        
 
         if ($number) {
-            return response()->json([
+            // return response()->json([
 
-                'responsecode' => '400',
-                'message' => 'Transactions with the Customeridnumber exist, request not saved'], 400);
+            //     'responsecode' => '400',
+            //     'message' => 'Transactions with the Customeridnumber exist, request not saved'], 400);
                 
-            // ]);
+            // // ]);
+            return "You have already applied for advance please contact admin for more information";
         }
         if(!$number){
             if($ngao->save()){
-                // return response()->json([
-                //     'responsecode' => '200',
-                //     'response' => 'Success',
-                //     'status' => 'Processing'
-        
-                // ]);
                 return "Your advance of ksh $ngao->Amount has been successfully applied.";
             }
         
