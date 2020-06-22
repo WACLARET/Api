@@ -16,7 +16,7 @@ class LoanStatusController extends Controller
      */ 
     public function index(Request $request) 
     {
-        dd($request);
+        // dd($request);
         // print_r($request);die();
         $message = new Status;
         $message->customeridnumber = $request->input('customeridnumber');
@@ -29,7 +29,7 @@ class LoanStatusController extends Controller
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
         // return($withdraw);
-        return "Your loanbalance for account number $message->customermobilenumber id number $message->customeridnumber is $withdraw ";
+        return "Your loanbalance is $withdraw ";
     }
 
     /**
