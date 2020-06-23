@@ -17,6 +17,8 @@ class CreateTopUpsTable extends Migration
             $table->increments('id');
             $table->char('msisdn');
             $table->integer('Amount');
+            $table->char('id_number')->nullable();
+            $table->char('status')->default('CURRENT');
             $table->integer('confirm');
             $table->timestamps();
         });

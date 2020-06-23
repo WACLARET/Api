@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Ussd;
+// use App\Ussd;
+use App\Top_up;
 use App\Http\Resources\Ussddata;
 
 class NgaoController extends Controller
@@ -17,7 +18,7 @@ class NgaoController extends Controller
     //This shows all the data in the database 
     public function index()
     {
-       $ngao = Ussd::paginate(15);
+       $ngao = Top_up::paginate(15); 
        //Return collection of articles as a resource
        return Ussddata::collection( $ngao);
     }
@@ -43,12 +44,16 @@ class NgaoController extends Controller
 
         // $input = $request->all();
         // print_r($input);die();
-        $number = Ussd::where('session_id', '=', $request->session_id)->first();
+        // $number = Ussd::where('session_id', '=', $request->session_id)->first();
+        $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+
         // dd($user);
-        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Ussd;
+        // $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Ussd;
+        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Top_up;
+
 
         // $ngao->ngao_id = $request->input('ngao_id');
-        $ngao->session_id = $request->input('session_id');
+        // $ngao->session_id = $request->input('session_id');
         $ngao->msisdn = $request->input('msisdn');
         $ngao->Amount = $request->input('Amount');
         $ngao->id_number = $request->input('id_number');
@@ -80,7 +85,7 @@ class NgaoController extends Controller
             if($ngao->save()){
                 return "Your advance of ksh $ngao->Amount has been successfully applied.";
             }
-        
+         
             if(!$ngao->save()){
                 return response()->json([
                     'responsecode' => '-1',

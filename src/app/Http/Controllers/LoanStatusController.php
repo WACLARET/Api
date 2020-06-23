@@ -25,7 +25,8 @@ class LoanStatusController extends Controller
         // dd($message);
         // $ngao = Status::paginate(15);
         // $withdraw = DB::table('statuses')->value('loanbalance');
-        $withdraw = DB::table('statuses')->value('loanstatus');
+        // $withdraw = DB::table('statuses')->value('loanstatus');
+        $withdraw = DB::table('top_ups')->value('status');
         // dd($withdraw);
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);

@@ -18,8 +18,8 @@ class TopUpController extends Controller
     public function index(Request $request)
     {
         
-        // $input = $request->all();
-        // print_r($input);die();
+        $input = $request->all();
+        print_r($input);die();
 
         $Check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
         $amount = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('Amount');
