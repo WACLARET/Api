@@ -21,6 +21,7 @@ class Ussddata extends JsonResource
             'msisdn' => $this->msisdn,
             'Amount' => $this->Amount,
             'id_number' => $this->id_number,
+            'Description' => $this->Description,
             'confirm' => $this->confirm,
             
         ];

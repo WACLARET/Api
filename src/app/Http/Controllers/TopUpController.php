@@ -18,8 +18,8 @@ class TopUpController extends Controller
     public function index(Request $request)
     {
         
-        $input = $request->all();
-        print_r($input);die();
+        // $input = $request->all();
+        // print_r($input);die();
 
         $Check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
         $amount = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('Amount');
@@ -31,7 +31,9 @@ class TopUpController extends Controller
         $message = new Top_up;
         $message->msisdn = $request->input('msisdn');
         $message->Amount = $request->input('Amount');
+        $message->Description = 'TOPUP';
         $message->confirm = $request->input('confirm');
+        
 
 
 

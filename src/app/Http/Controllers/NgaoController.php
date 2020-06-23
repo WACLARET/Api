@@ -20,7 +20,7 @@ class NgaoController extends Controller
     {
        $ngao = Top_up::paginate(15); 
        //Return collection of articles as a resource
-       return Ussddata::collection( $ngao);
+       return Ussddata::collection( $ngao); 
     }
 
     /**
@@ -57,7 +57,8 @@ class NgaoController extends Controller
         $ngao->msisdn = $request->input('msisdn');
         $ngao->Amount = $request->input('Amount');
         $ngao->id_number = $request->input('id_number');
-        $ngao->confirm = $request->input('confirm');
+        $ngao->Description = "ADVANCE";
+        $ngao->confirm = $request->input('confirm'); 
          
 
 
