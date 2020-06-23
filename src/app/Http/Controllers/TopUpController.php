@@ -40,8 +40,10 @@ class TopUpController extends Controller
         if($Check_number){
             $message->save();
             return "Loan topup for amount KSH.$message->Amount has been topped for loan amount KSH.$amt_sum ";
-            
+        }else{
+            return "You dont have an existing loan to topup.";
         }
+
 // dd('kkkkkkkkkk');
 //         if($message->save()){
 //             // return response()->json([
