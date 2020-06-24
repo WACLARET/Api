@@ -96,18 +96,18 @@ class LoanStatusController extends Controller
         $statement = new Top_up;
         $statement->msisdn = $request->input('msisdn');
         //check if number exixts to pull statement
-//         $check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+        $check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 //         $Statuses = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('status')->all();
 //         $Amounts = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->all();
 //         $Descriptions = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Description')->all();
 //         $Dates = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('created_at')->all();
-// // dd($Amounts);
-
-            $data = DB::table('top_ups')->get()->toArray();
+// dd($request);
+if($check_number){
+            $data = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->get()->toArray();
             // dd($data['status']);
             $statement = array(); 
 
-            $header = "|Date  and time  |Description|Amount|Status" . "\n";
+            $header = "|Date  and time  |Description |Amount|Status" . "\n";
 
         
 
@@ -138,13 +138,16 @@ class LoanStatusController extends Controller
 
                 return($header);
 
+            }else{
+                $header = "|Date  and time  |Description |Amount|Status" . "\n";
+                return $header;
+            }
 
 
+    //     $withdraw = DB::table('top_ups')->value('Amount');
 
-        $withdraw = DB::table('top_ups')->value('Amount');
-
-        // dd($withdraw);
-       return "You have a Balance of KSH.$withdraw. Thank you";
+    //     // dd($withdraw);
+    //    return "You have a Balance of KSH.$withdraw. Thank you";
     }
 
     /**
