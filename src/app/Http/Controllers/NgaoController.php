@@ -58,8 +58,8 @@ class NgaoController extends Controller
         $ngao->Amount = $request->input('Amount');
         $ngao->id_number = $request->input('id_number');
         $ngao->Description = "ADVANCE";
-        $ngao->confirm = $request->input('confirm'); 
-         
+        $ngao->confirm = $request->input('confirm');
+
 
 
 
