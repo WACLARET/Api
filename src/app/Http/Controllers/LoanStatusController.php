@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Status;
+use App\Top_up;
 use DB;
 
 class LoanStatusController extends Controller
@@ -86,9 +87,17 @@ class LoanStatusController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show()
+     */ 
+    public function show(Request $request)
     {
+        //request the number on ussd
+        $statement = new Top_up;
+        $statement->msisdn = $request->input('msisdn');
+        //check if number exixts to pull statement
+        $check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+
+        dd($statement);
+
         $withdraw = DB::table('top_ups')->value('Amount');
 
         // dd($withdraw);
