@@ -90,13 +90,56 @@ class LoanStatusController extends Controller
      */ 
     public function show(Request $request)
     {
+        // $input = $request->all();
+        // print_r($input);die();
         //request the number on ussd
         $statement = new Top_up;
         $statement->msisdn = $request->input('msisdn');
         //check if number exixts to pull statement
-        $check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+//         $check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+//         $Statuses = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('status')->all();
+//         $Amounts = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->all();
+//         $Descriptions = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Description')->all();
+//         $Dates = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('created_at')->all();
+// // dd($Amounts);
 
-        dd($statement);
+            $data = DB::table('top_ups')->get()->toArray();
+            // dd($data['status']);
+            $statement = array(); 
+
+            $header = "|Date  and time  |Description|Amount|Status" . "\n";
+
+        
+
+                foreach ($data as $datastatus) {
+                    // dd($datastatus->Amount);
+                    $status = $datastatus->status;
+                    $amount = $datastatus->Amount;
+                    $description = $datastatus->Description;
+                    $Date = $datastatus->created_at;
+                    // dd($status);
+                    // $date = date_create($status->created_at);
+                // foreach ($Amounts as $Amount){
+                //     $amount = $Amount;
+
+                // }
+                // foreach ($Descriptions as $Description){
+                //     $description = $Description;
+                //     // dd($description);
+                // }
+                // foreach ($Dates as $Date){
+                //     $Date = $Date;
+
+                // }
+
+
+                    $header = $header . "|" . $Date . "|" . $description . "|" . $amount ."|" . $status ."\n";
+                }
+
+                return($header);
+
+
+
 
         $withdraw = DB::table('top_ups')->value('Amount');
 
