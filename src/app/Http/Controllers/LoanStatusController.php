@@ -15,7 +15,7 @@ class LoanStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ 
-    public function index(Request $request) 
+    public function loanstatus(Request $request) 
     {
         // dd($request);
         // print_r($request);die();
@@ -88,7 +88,7 @@ class LoanStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */ 
-    public function show(Request $request)
+    public function ministatement(Request $request)
     {
         // $input = $request->all();
         // print_r($input);die();
@@ -129,7 +129,7 @@ if($check_number){
                 // }
                 // foreach ($Dates as $Date){
                 //     $Date = $Date;
-
+ 
                 // }
 
 

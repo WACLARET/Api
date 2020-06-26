@@ -15,13 +15,14 @@ class CreateTopUpsTable extends Migration
     {
         Schema::create('top_ups', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('msisdn');
+            $table->char('msisdn'); 
             $table->integer('Amount');
             $table->char('id_number')->nullable();
             $table->char('status')->default('CURRENT');
             $table->char('Description');
             $table->integer('confirm');
-            $table->timestamps();
+            $table->char('refno'); 
+            $table->timestamps(); 
         });
     }
 

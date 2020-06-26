@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Top_up;
+use App\Ussd;
 use DB;
 
 class TopUpController extends Controller
@@ -15,17 +16,17 @@ class TopUpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function topuploan(Request $request)
     {
-        
+       
         // $input = $request->all();
         // print_r($input);die();
 
-        $Check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+        $Check_number = Ussd::where('msisdn', '=', $request->msisdn)->first();
         $amount = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('Amount');
         $amt_sum = DB::table('top_ups')->where('msisdn', '=' , $request->msisdn )->pluck("Amount")->sum();
 
-        // dd($request); 
+        // dd($Check_number); 
         // print_r($request);die();
 
         $message = new Top_up;
@@ -33,6 +34,12 @@ class TopUpController extends Controller
         $message->Amount = $request->input('Amount');
         $message->Description = 'TOPUP';
         $message->confirm = $request->input('confirm');
+        // $message->refno = 'test';
+        $message ->refno = 'TOP' . substr(md5(uniqid(rand(), true)),0,10);
+
+        // $message->refno = substr( "XYZ" ,mt_rand( 0 ,50 ) ,2 ) .substr( md5( time() ), 1,3);
+
+        // dd($message);
         
 
 

@@ -19,7 +19,9 @@ class CreateUssdsTable extends Migration
             $table->char('msisdn')->unique();
             $table->integer('Amount');
             $table->char('id_number');
+            $table->char('Description');
             $table->char('confirm');
+            $table->char('refno');
             $table->timestamps();
         });
     }

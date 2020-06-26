@@ -25,7 +25,7 @@ Route::get('getdata', 'NgaoController@index');
 Route::get('getdata/{id}', 'NgaoController@show');
 
 //add new data
-Route::post('postdata', 'NgaoController@store');
+Route::post('postdata', 'NgaoController@advanceapplication');
 
 //update data
 Route::put('putdata', 'NgaoController@store');
@@ -37,12 +37,12 @@ Route::delete('deletedata/{id}', 'NgaoController@destroy');
 Route::post('payloan', 'PayLoanController@index');
 
 //topup
-Route::post('Topup', 'TopUpController@index');
+Route::post('Topup', 'TopUpController@topuploan');
 
 //loanstatus
 // Route::post('loanstatus', 'LoanStatusController@store');
 
-Route::get('loanstatus', 'LoanStatusController@index');
+Route::get('loanstatus', 'LoanStatusController@loanstatus');
 
 //statement
-Route::get('statement', 'LoanStatusController@show');
+Route::get('statement', 'LoanStatusController@ministatement');
