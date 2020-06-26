@@ -25,10 +25,10 @@ class LoanStatusController extends Controller
         
         // dd($message);
         // $ngao = Status::paginate(15);
-        // $withdraw = DB::table('statuses')->value('loanbalance');
-        // $withdraw = DB::table('statuses')->value('loanstatus');
-        $withdraw = DB::table('top_ups')->value('status');
-        // dd($withdraw);
+        $withdraw = DB::table('top_ups')->get();
+        // $withdraw = DB::table('ussds')->value('refno');
+        // $withdraw = DB::table('top_ups')->value('status');
+        dd($withdraw);
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
         // return($withdraw);
@@ -104,10 +104,11 @@ class LoanStatusController extends Controller
 // dd($request);
 if($check_number){
             $data = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->get()->toArray();
+
             // dd($data['status']);
             $statement = array(); 
 
-            $header = "|Date  and time  |Description |Amount|Status" . "\n";
+            $header = "|Date  and time  |Description |Amount|Status|Transation refno" . "\n";
 
         
 
@@ -117,7 +118,8 @@ if($check_number){
                     $amount = $datastatus->Amount;
                     $description = $datastatus->Description;
                     $Date = $datastatus->created_at;
-                    // dd($status);
+                    $refno = $datastatus->refno;
+                    // dd($refno);
                     // $date = date_create($status->created_at);
                 // foreach ($Amounts as $Amount){
                 //     $amount = $Amount;
@@ -133,13 +135,13 @@ if($check_number){
                 // }
 
 
-                    $header = $header . "|" . $Date . "|" . $description . "|" . $amount ."|" . $status ."\n";
+                    $header = $header . "|" . $Date . "|" . $description . "|" . $amount ."  |" . $status . "  |" . $refno ."\n";
                 }
 
                 return($header);
 
             }else{
-                $header = "|Date  and time  |Description |Amount|Status" . "\n";
+                $header = "|Date  and time  |Description |Amount|Status|Transation refno" . "\n";
                 return $header;
             }
 

@@ -59,7 +59,7 @@ class NgaoController extends Controller
         $ngao->id_number = $request->input('id_number');
         $ngao->Description = "ADVANCE";
         $ngao->confirm = $request->input('confirm'); 
-        $ngao ->refno = 'ADV' . substr(md5(uniqid(rand(), true)),0,10); 
+        $ngao ->refno = 'LN' . substr(md5(uniqid(rand(), true)),0,10); 
         
 
 
@@ -82,11 +82,11 @@ class NgaoController extends Controller
             //     'message' => 'Transactions with the Customeridnumber exist, request not saved'], 400);
                 
             // // ]);
-            return "You have already applied for advance please contact admin for more information";
+            return "Dear Customer you have an Existing Advance request";
         }
         if(!$number){
             if($ngao->save()){
-                return "Your advance of ksh $ngao->Amount has been successfully applied.";
+                return "Dear Customer your advance request of ksh.$ngao->Amount has been successfully received.";
             }
          
             if(!$ngao->save()){
