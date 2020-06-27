@@ -90,7 +90,7 @@ class TopUpController extends Controller
             $message->save();
             return "Dear Customer your loan topup request for amount Ksh.$message->Amount for loan number  $refNumber on $todays_date  has been received. ";
         }else{
-            return "You dont have an existing loan to topup.";
+            return "Dear Customer you dont have an existing loan to topup.";
         }
 
 // dd('kkkkkkkkkk');
