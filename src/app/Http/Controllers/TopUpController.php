@@ -44,9 +44,9 @@ class TopUpController extends Controller
 
 
         // Get the last order id
-        $created_at = DB::table('top_ups')->where('msisdn', '=' , $request->msisdn )->value("id");
+        $Check_id = DB::table('top_ups')->where('msisdn', '=' , $request->msisdn )->value("id");
 
-            if(!$created_at){
+            if(!$Check_id){
                 $lastId = 0;
             }else{
                 $lastId = top_up::orderBy('id', 'desc')->first()->id;
@@ -69,6 +69,9 @@ class TopUpController extends Controller
 
             // dd($test);
             // $ngao ->refno = 'LN' . substr(md5(uniqid(rand(), true)),0,10); 
+            $todays_date = substr(date('d/m/Y'),0,8);
+
+            // dd($test);
 
             // $mytime=time::now();
             // $date=$mytime->toRfc850String();
@@ -85,7 +88,7 @@ class TopUpController extends Controller
         // $message->save();
         if($Check_number){
             $message->save();
-            return "Dear Customer your loan topup request for amount Ksh.$message->Amount for loan number  $refNumber on $created_at  has been received. ";
+            return "Dear Customer your loan topup request for amount Ksh.$message->Amount for loan number  $refNumber on $todays_date  has been received. ";
         }else{
             return "You dont have an existing loan to topup.";
         }

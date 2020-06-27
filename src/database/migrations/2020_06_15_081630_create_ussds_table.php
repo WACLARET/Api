@@ -17,6 +17,7 @@ class CreateUssdsTable extends Migration
             $table->increments('id');
             $table->Integer('session_id')->unique();
             $table->char('msisdn')->unique();
+            $table->char('status')->default('CURRENT');
             $table->integer('Amount');
             $table->char('id_number');
             $table->char('Description');

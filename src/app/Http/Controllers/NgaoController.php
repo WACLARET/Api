@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Ussd;
 use App\Top_up;
 use App\Http\Resources\Ussddata;
+use DB;
 
 class NgaoController extends Controller
 {
@@ -60,6 +61,19 @@ class NgaoController extends Controller
         $ngao->Description = "ADVANCE";
         $ngao->confirm = $request->input('confirm'); 
         $ngao ->refno = 'LN' . substr(md5(uniqid(rand(), true)),0,10); 
+
+        //check mif id exist to generate random refNumber
+        $Check_id = DB::table('ussds')->where('msisdn', '=' , $request->msisdn )->value("id");
+
+            if(!$Check_id){
+                $lastId = 0;
+            }else{
+                $lastId = top_up::orderBy('id', 'desc')->first()->id;
+            }
+            // Get last 3 digits of last order id
+            $lastIncreament = substr($lastId, -3);
+
+            $ngao ->refno = 'LN' . substr(date('Ymd'),2,10) . 'D' . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
         
 
 

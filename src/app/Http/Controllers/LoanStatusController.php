@@ -25,10 +25,10 @@ class LoanStatusController extends Controller
         
         // dd($message);
         // $ngao = Status::paginate(15);
-        $withdraw = DB::table('top_ups')->get();
+        // $withdraw = DB::table('top_ups')->get();
         // $withdraw = DB::table('ussds')->value('refno');
-        // $withdraw = DB::table('top_ups')->value('status');
-        dd($withdraw);
+        $withdraw = DB::table('top_ups')->value('status');
+        // dd($withdraw);
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
         // return($withdraw);
@@ -103,53 +103,41 @@ class LoanStatusController extends Controller
 //         $Dates = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('created_at')->all();
 // dd($request);
 if($check_number){
-            $data = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->get()->toArray();
+            $topup_data = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->get()->toArray();
+            $advance_data = DB::table('ussds')->where('msisdn', '=', $request->msisdn)->get()->toArray();
+            // dd($advance_data);
 
             // dd($data['status']);
             $statement = array(); 
 
+            //return data in table as a mini statement
+
             $header = "|Date  and time  |Description |Amount|Status|Transation refno" . "\n";
 
-        
-
-                foreach ($data as $datastatus) {
+                foreach ($topup_data as $datastatus) {
                     // dd($datastatus->Amount);
                     $status = $datastatus->status;
                     $amount = $datastatus->Amount;
                     $description = $datastatus->Description;
                     $Date = $datastatus->created_at;
                     $refno = $datastatus->refno;
-                    // dd($refno);
-                    // $date = date_create($status->created_at);
-                // foreach ($Amounts as $Amount){
-                //     $amount = $Amount;
-
-                // }
-                // foreach ($Descriptions as $Description){
-                //     $description = $Description;
-                //     // dd($description);
-                // }
-                // foreach ($Dates as $Date){
-                //     $Date = $Date;
- 
-                // }
-
-
-                    $header = $header . "|" . $Date . "|" . $description . "|" . $amount ."  |" . $status . "  |" . $refno ."\n";
                 }
-
+                foreach ($advance_data as $datastatus) {
+                    // dd($datastatus->Amount);
+                    $adv_status = $datastatus->status;
+                    $adv_amount = $datastatus->Amount;
+                    $avd_description = $datastatus->Description;
+                    $adv_Date = $datastatus->created_at;
+                    $adv_refno = $datastatus->refno;
+                }
+                $header = $header . "|" . $adv_Date . "|" . $avd_description . "|" . $adv_amount ."  |" . $adv_status . "  |" . $adv_refno ."\n";
+                    $header = $header . "|" . $Date . "|" . $description . "|" . $amount ."  |" . $status . "  |" . $refno ."\n";
                 return($header);
 
             }else{
                 $header = "|Date  and time  |Description |Amount|Status|Transation refno" . "\n";
                 return $header;
             }
-
-
-    //     $withdraw = DB::table('top_ups')->value('Amount');
-
-    //     // dd($withdraw);
-    //    return "You have a Balance of KSH.$withdraw. Thank you";
     }
 
     /**

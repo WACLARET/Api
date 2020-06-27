@@ -22,7 +22,7 @@ class CreateTopUpsTable extends Migration
             $table->char('Description');
             $table->integer('confirm');
             $table->char('refno'); 
-            $table->timestamps(); 
+            $table->timestamps();  
         });
     }
 
