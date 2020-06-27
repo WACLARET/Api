@@ -114,6 +114,16 @@ if($check_number){
 
             $header = "|Date  and time  |Description |Amount|Status|Transation refno" . "\n";
 
+            foreach ($advance_data as $datastatus) {
+                // dd($datastatus->Amount);
+                $adv_status = $datastatus->status;
+                $adv_amount = $datastatus->Amount;
+                $avd_description = $datastatus->Description;
+                $adv_Date = $datastatus->created_at;
+                $adv_refno = $datastatus->refno;
+            }
+            $header = $header . "|" . $adv_Date . "|" . $avd_description . "|" . $adv_amount ."  |" . $adv_status . "  |" . $adv_refno ."\n";
+            
                 foreach ($topup_data as $datastatus) {
                     // dd($datastatus->Amount);
                     $status = $datastatus->status;
@@ -121,17 +131,11 @@ if($check_number){
                     $description = $datastatus->Description;
                     $Date = $datastatus->created_at;
                     $refno = $datastatus->refno;
+
+                $header = $header . "|" . $Date . "|" . $description . "|" . $amount ."  |" . $status . "  |" . $refno ."\n";
+
                 }
-                foreach ($advance_data as $datastatus) {
-                    // dd($datastatus->Amount);
-                    $adv_status = $datastatus->status;
-                    $adv_amount = $datastatus->Amount;
-                    $avd_description = $datastatus->Description;
-                    $adv_Date = $datastatus->created_at;
-                    $adv_refno = $datastatus->refno;
-                }
-                $header = $header . "|" . $adv_Date . "|" . $avd_description . "|" . $adv_amount ."  |" . $adv_status . "  |" . $adv_refno ."\n";
-                    $header = $header . "|" . $Date . "|" . $description . "|" . $amount ."  |" . $status . "  |" . $refno ."\n";
+                
                 return($header);
 
             }else{
