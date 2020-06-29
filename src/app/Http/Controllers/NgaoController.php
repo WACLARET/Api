@@ -43,8 +43,9 @@ class NgaoController extends Controller
     public function advanceapplication(Request $request)
     {
 
-        // $input = $request->all();
-        // print_r($input);die();
+
+        $input = $request->all();
+        print_r($input);die();
         $number = Ussd::where('session_id', '=', $request->session_id)->first();
         // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 
