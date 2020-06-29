@@ -53,11 +53,18 @@ class TopUpController extends Controller
             $todays_date = substr(date('d/m/Y'),0,8);
 
             // save the request input
-            if($Check_number){
-                $message->save();
-                return "Dear Customer your loan topup request for amount Ksh.$message->Amount for loan number  $refNumber on $todays_date  has been received. ";
+            if($request->confirm == 1){
+                if($Check_number){
+                    $message->save();
+                    return "Dear Customer your loan topup request for amount Ksh.$message->Amount for loan number  $refNumber on $todays_date  has been received. Thank You. ";
+                }else{
+                    return "Dear Customer you dont have an existing loan to topup. Thank You.";
+                }
+
+            }elseif($request->confirm == 2){
+                return "Thank you";
             }else{
-                return "Dear Customer you dont have an existing loan to topup.";
+                return "Please select a valid confirmation.Thank You.";
             }
 
     }

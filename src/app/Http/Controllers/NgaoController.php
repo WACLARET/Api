@@ -87,33 +87,33 @@ class NgaoController extends Controller
         // $ngao->customerfullnames = $request->input('customerfullnames');
         // $ngao->loanapplicationdate = $request->input('loanapplicationdate');
 
-       
+        // $request->confirm
+            if($request->confirm == 1){
 
-        if ($number) {
-            // return response()->json([
-
-            //     'responsecode' => '400',
-            //     'message' => 'Transactions with the Customeridnumber exist, request not saved'], 400);
+           
+                if ($number) {
+                    return "Dear Customer you have an Existing Advance request. Thank You.";
+                }
+                if(!$number){
+                    if($ngao->save()){
+                        return "Dear Customer your advance request of ksh.$ngao->Amount has been successfully received. Thank You.";
+                    }
                 
-            // // ]);
-            return "Dear Customer you have an Existing Advance request";
-        }
-        if(!$number){
-            if($ngao->save()){
-                return "Dear Customer your advance request of ksh.$ngao->Amount has been successfully received.";
+                    if(!$ngao->save()){
+                        return response()->json([
+                            'responsecode' => '-1',
+                            'response' => 'Failed',
+                            'status' => 'Pending loan application'
+                        ]);
+                    }
+                }
+            }elseif($request->confirm == 2){
+                return "Thank you";
+            }else{
+                return "Please select a valid confirmation. Thank You.";
             }
-         
-            if(!$ngao->save()){
-                return response()->json([
-                    'responsecode' => '-1',
-                    'response' => 'Failed',
-                    'status' => 'Pending loan application'
-                ]);
-            }
-        }
-        
 
-    }
+            }
 
     /**
      * Display the specified resource.
