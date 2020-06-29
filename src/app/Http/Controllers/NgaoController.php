@@ -90,7 +90,6 @@ class NgaoController extends Controller
         // $request->confirm
             if($request->confirm == 1){
 
-           
                 if ($number) {
                     return "Dear Customer you have an Existing Advance request. Thank You.";
                 }
@@ -98,14 +97,14 @@ class NgaoController extends Controller
                     if($ngao->save()){
                         return "Dear Customer your advance request of ksh.$ngao->Amount has been successfully received. Thank You.";
                     }
-                
-                    if(!$ngao->save()){
-                        return response()->json([
-                            'responsecode' => '-1',
-                            'response' => 'Failed',
-                            'status' => 'Pending loan application'
-                        ]);
-                    }
+
+                    // if(!$ngao->save()){
+                    //     return response()->json([
+                    //         'responsecode' => '-1',
+                    //         'response' => 'Failed',
+                    //         'status' => 'Pending loan application'
+                    //     ]);
+                    // }
                 }
             }elseif($request->confirm == 2){
                 return "Thank you";
