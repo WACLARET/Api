@@ -8,6 +8,7 @@ use App\Http\Requests;
 Use \Carbon\Carbon;
 use App\Top_up;
 use App\Ussd;
+use App\Advance;
 use DB;
 use Carbon\Carbon as time;
 
@@ -24,11 +25,11 @@ class TopUpController extends Controller
         // $input = $request->all();
         // print_r($input);die();
 
-        $Check_number = Ussd::where('msisdn', '=', $request->msisdn)->first();
+        $Check_number = Advance::where('msisdn', '=', $request->msisdn)->first();
         $amount = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('Amount');
         $amt_sum = DB::table('top_ups')->where('msisdn', '=' , $request->msisdn )->pluck("Amount")->sum();
-        $refNumber = DB::table('ussds')->where('msisdn', '=' , $request->msisdn )->value("refno");
-        $created_at = DB::table('ussds')->where('msisdn', '=' , $request->msisdn )->value("created_at");
+        $refNumber = DB::table('advances')->where('msisdn', '=' , $request->msisdn )->value("refno");
+        $created_at = DB::table('advances')->where('msisdn', '=' , $request->msisdn )->value("created_at");
         //request inputs
         $message = new Top_up;
         $message->msisdn = $request->input('msisdn');
