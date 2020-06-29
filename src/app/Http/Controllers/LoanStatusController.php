@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Status;
 use App\Top_up;
 use App\Ussd;
+use App\Advance;
 use DB;
 
 class LoanStatusController extends Controller
@@ -26,8 +27,7 @@ class LoanStatusController extends Controller
         
         // dd($Check_number);
         // $ngao = Status::paginate(15);
-        $withdraw = DB::table('advances')->get();
-        dd($withdraw);
+        // $withdraw = DB::table('top_ups')->get();
         // $withdraw = DB::table('ussds')->value('refno');
         $Status_topups = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('status');
         $Status_advance = DB::table('ussds')->where('msisdn', '=', $request->msisdn)->value('status');
@@ -104,7 +104,7 @@ class LoanStatusController extends Controller
         $statement->msisdn = $request->input('msisdn');
         //check if number exixts to pull statement
         $check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
-        $checkno_advance = Ussd::where('msisdn', '=', $request->msisdn)->first();
+        $checkno_advance = Advance::where('msisdn', '=', $request->msisdn)->first();
 //         $Statuses = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('status')->all();
 //         $Amounts = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->all();
 //         $Descriptions = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Description')->all();
@@ -112,7 +112,7 @@ class LoanStatusController extends Controller
 // dd($request);
 if($check_number OR $checkno_advance){
             $topup_data = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->get()->toArray();
-            $advance_data = DB::table('ussds')->where('msisdn', '=', $request->msisdn)->get()->toArray();
+            $advance_data = DB::table('advances')->where('msisdn', '=', $request->msisdn)->get()->toArray();
             // dd($advance_data);
 
             // dd($data['status']);
@@ -126,7 +126,7 @@ if($check_number OR $checkno_advance){
                 // dd($datastatus->Amount);
                 $adv_status = $datastatus->status;
                 $adv_amount = $datastatus->Amount;
-                $avd_description = $datastatus->Description;
+                $avd_description = $datastatus->description;
                 $adv_Date = $datastatus->created_at;
                 $adv_refno = $datastatus->refno;
             }

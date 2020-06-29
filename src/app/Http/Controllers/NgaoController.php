@@ -134,66 +134,66 @@ class NgaoController extends Controller
         // print_r($input);die();
 
         // dd($request);
-        if($id == 1){
+        // if($id == 1){
 
-            $number = Ussd::where('session_id', '=', $request->session_id)->first();
-        // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+        //     $number = Ussd::where('session_id', '=', $request->session_id)->first();
+        // // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 
-        // dd($user);
-        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Ussd;
-        // $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Top_up;
+        // // dd($user);
+        // $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Ussd;
+        // // $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Top_up;
 
-            $ngao->msisdn = $request->input('msisdn');
-            $ngao->session_id = $request->input('session_id');
-            $ngao->Amount = $request->input('Amount');
-            $ngao->id_number = $request->input('id_number');
-            $ngao->description = "ADVANCE";
-            $ngao->loanterm = 15;
-            $ngao->confirm = $request->input('confirm'); 
-            $ngao ->refno = 'LN' . substr(md5(uniqid(rand(), true)),0,10); 
+        //     $ngao->msisdn = $request->input('msisdn');
+        //     $ngao->session_id = $request->input('session_id');
+        //     $ngao->Amount = $request->input('Amount');
+        //     $ngao->id_number = $request->input('id_number');
+        //     $ngao->description = "ADVANCE";
+        //     $ngao->loanterm = 15;
+        //     $ngao->confirm = $request->input('confirm'); 
+        //     $ngao ->refno = 'LN' . substr(md5(uniqid(rand(), true)),0,10); 
 
-            //check mif id exist to generate random refNumber
-        $Check_id = DB::table('ussds')->where('msisdn', '=' , $request->msisdn )->value("id");
+        //     //check mif id exist to generate random refNumber
+        // $Check_id = DB::table('ussds')->where('msisdn', '=' , $request->msisdn )->value("id");
 
-        if(!$Check_id){
-            $lastId = 0;
-        }else{
-            $lastId = Ussd::orderBy('id', 'desc')->first()->id;
-        }
-        // Get last 3 digits of last order id
-        $lastIncreament = substr($lastId, -3);
+        // if(!$Check_id){
+        //     $lastId = 0;
+        // }else{
+        //     $lastId = Ussd::orderBy('id', 'desc')->first()->id;
+        // }
+        // // Get last 3 digits of last order id
+        // $lastIncreament = substr($lastId, -3);
 
-        $ngao ->refno = 'LN' . substr(date('Ymd'),2,10) . 'D' . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
+        // $ngao ->refno = 'LN' . substr(date('Ymd'),2,10) . 'D' . str_pad($lastIncreament + 1, 3, 0, STR_PAD_LEFT);
     
 
-            // $request->confirm
-            if($request->confirm == 1){
+        //     // $request->confirm
+        //     if($request->confirm == 1){
 
-                if ($number) {
-                    return "Dear Customer you have an Existing Advance request. Thank You.";
-                }
-                if(!$number){
-                    if($ngao->save()){
-                        return "Dear Customer your advance request of ksh.$ngao->Amount has been successfully received. Thank You.";
-                    }
-                }
-            }elseif($request->confirm == 2){
-                return "Thank you";
-            }else{
-                return "Please select a valid confirmation. Thank You.";
-            }
+        //         if ($number) {
+        //             return "Dear Customer you have an Existing Advance request. Thank You.";
+        //         }
+        //         if(!$number){
+        //             if($ngao->save()){
+        //                 return "Dear Customer your advance request of ksh.$ngao->Amount has been successfully received. Thank You.";
+        //             }
+        //         }
+        //     }elseif($request->confirm == 2){
+        //         return "Thank you";
+        //     }else{
+        //         return "Please select a valid confirmation. Thank You.";
+        //     }
 
 
-        }elseif($id == 2){
-            return "twooooooooooooooo";
-        }else{
-            return "noneeeeeeeeeeee";
-        }
+        // }elseif($id == 2){
+        //     return "twooooooooooooooo";
+        // }else{
+        //     return "noneeeeeeeeeeee";
+        // }
 
-        // $ngao = Ussd::findOrFail($id);
+        // // $ngao = Ussd::findOrFail($id);
 
-        // //returns a single data in DB
-        // return new Ussddata($ngao);
+        // // //returns a single data in DB
+        // // return new Ussddata($ngao);
     }
 
     /**

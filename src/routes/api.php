@@ -35,7 +35,7 @@ Route::delete('deletedata/{id}', 'NgaoController@destroy');
 
 //pay loan
 Route::post('payloan', 'PayLoanController@index');
-
+ 
 //topup
 Route::post('Topup', 'TopUpController@topuploan');
 
