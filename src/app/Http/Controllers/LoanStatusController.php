@@ -27,16 +27,17 @@ class LoanStatusController extends Controller
         // $ngao = Status::paginate(15);
         // $withdraw = DB::table('top_ups')->get();
         // $withdraw = DB::table('ussds')->value('refno');
-        $Status_topups = DB::table('top_ups','ussds')->where('msisdn', '=', $request->msisdn)->value('status');
+        $Status_topups = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('status');
+        $Status_advance = DB::table('ussds')->where('msisdn', '=', $request->msisdn)->value('status');
         $total_topups =  DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->sum();
         $total_advance =  DB::table('ussds')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->sum();
         // $total_topups =  DB::table('top_ups')->where('msisdn', '=', 255720711386)->get();
-        // dd($Status_topups);
+        // dd($Status_advance);
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
         $loanbalance = $total_topups + $total_advance;
         // return($withdraw);
-        return "Your loan is a $Status_topups loan, loanbalance is Ksh.$loanbalance ";
+        return "Your loan is a $Status_advance loan, loanbalance is Ksh.$loanbalance ";
     }
 
     /**
