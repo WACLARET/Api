@@ -68,7 +68,7 @@ class NgaoController extends Controller
             if(!$Check_id){
                 $lastId = 0;
             }else{
-                $lastId = top_up::orderBy('id', 'desc')->first()->id;
+                $lastId = Ussd::orderBy('id', 'desc')->first()->id;
             }
             // Get last 3 digits of last order id
             $lastIncreament = substr($lastId, -3);
