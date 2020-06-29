@@ -44,8 +44,8 @@ class NgaoController extends Controller
     {
 
 
-        $input = $request->all();
-        print_r($input);die();
+        // $input = $request->all();
+        // print_r($input);die();
         $number = Ussd::where('session_id', '=', $request->session_id)->first();
         // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 
@@ -114,8 +114,13 @@ class NgaoController extends Controller
      * @return \Illuminate\Http\Response
      */
     //Shows specific data in the DB
-    public function show($id)
+    public function loanterm($id)
     {
+        // $input = $request->all();
+        // print_r($input);die();
+
+        dd($id);
+
         $ngao = Ussd::findOrFail($id);
 
         //returns a single data in DB

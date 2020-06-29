@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('getdata', 'NgaoController@index');
 
 //list specific data
-Route::get('getdata/{id}', 'NgaoController@show');
+Route::post('postdata/{id}', 'NgaoController@loanterm');
 
 //add new data
 Route::post('postdata', 'NgaoController@advanceapplication');
