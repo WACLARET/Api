@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Status;
 use App\Top_up;
+use App\Ussd;
 use DB;
 
 class LoanStatusController extends Controller
@@ -102,12 +103,13 @@ class LoanStatusController extends Controller
         $statement->msisdn = $request->input('msisdn');
         //check if number exixts to pull statement
         $check_number = Top_up::where('msisdn', '=', $request->msisdn)->first();
+        $checkno_advance = Ussd::where('msisdn', '=', $request->msisdn)->first();
 //         $Statuses = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('status')->all();
 //         $Amounts = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->all();
 //         $Descriptions = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Description')->all();
 //         $Dates = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('created_at')->all();
 // dd($request);
-if($check_number){
+if($check_number OR $checkno_advance){
             $topup_data = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->get()->toArray();
             $advance_data = DB::table('ussds')->where('msisdn', '=', $request->msisdn)->get()->toArray();
             // dd($advance_data);
