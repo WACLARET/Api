@@ -19,20 +19,24 @@ class LoanStatusController extends Controller
     {
         // dd($request);
         // print_r($request);die();
-        $message = new Status;
-        $message->customeridnumber = $request->input('customeridnumber');
-        $message->customermobilenumber = $request->input('customermobilenumber');
-        
+        $message = new Top_up;
+        $message->msisdn = $request->input('msisdn');
         // dd($message);
+        
+        // dd($Check_number);
         // $ngao = Status::paginate(15);
         // $withdraw = DB::table('top_ups')->get();
         // $withdraw = DB::table('ussds')->value('refno');
-        $withdraw = DB::table('top_ups')->value('status');
-        // dd($withdraw);
+        $Status_topups = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('status');
+        $total_topups =  DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->sum();
+        $total_advance =  DB::table('ussds')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->sum();
+        // $total_topups =  DB::table('top_ups')->where('msisdn', '=', 255720711386)->get();
+        // dd($Status_topups);
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($withdraw);
+        $loanbalance = $total_topups + $total_advance;
         // return($withdraw);
-        return "Your loan is  $withdraw loan ";
+        return "Your loan is a $Status_topups loan, loanbalance is Ksh.$loanbalance ";
     }
 
     /**
@@ -123,7 +127,7 @@ if($check_number){
                 $adv_refno = $datastatus->refno;
             }
             $header = $header . "|" . $adv_Date . "|" . $avd_description . "|" . $adv_amount ."  |" . $adv_status . "  |" . $adv_refno ."\n";
-            
+
                 foreach ($topup_data as $datastatus) {
                     // dd($datastatus->Amount);
                     $status = $datastatus->status;
