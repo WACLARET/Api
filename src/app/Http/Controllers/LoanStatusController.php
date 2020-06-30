@@ -36,13 +36,17 @@ class LoanStatusController extends Controller
         $createdate_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('created_at');
         $loanterm_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('loanterm');
         // $total_topups =  DB::table('top_ups')->where('msisdn', '=', 255720711386)->get();
-        // dd($createdate_advance);
-        $test = date('Y-m-d', strtotime($createdate_advance. ' + 10 days'));
+        // dd($loanterm_advance);
+        if($loanterm_advance == 15){
+            $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 15 days'));
+        }else{
+            $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 30 days'));
+        }
         // $test = Table::select('name','surname')->where('id', 1)->get();
-dd($createdate_advance, $test);
+// dd($createdate_advance, $test);
         $loanbalance = $total_topups + $total_advance;
         // return($withdraw);
-        return "Your loan is a $Status_advance loan, loanbalance is Ksh.$loanbalance, loan due date $createdate_advance ";
+        return "Your loan is a $Status_advance loan, loanbalance is Ksh.$loanbalance, loan due date $loanduedate ";
     }
 
     /**
@@ -116,9 +120,12 @@ dd($createdate_advance, $test);
 if($check_number OR $checkno_advance){
             $topup_data = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->get()->toArray();
             $advance_data = DB::table('advances')->where('msisdn', '=', $request->msisdn)->get()->toArray();
+            // $createdate_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('created_at');
             // dd($advance_data);
+            // $test = date('Y-m-d', strtotime($createdate_advance));
 
-            // dd($data['status']);
+            // dd($test);
+            
             $statement = array(); 
 
             //return data in table as a mini statement

@@ -49,6 +49,8 @@ class NgaoController extends Controller
         // $input = $request->all();
         // print_r($input);die();
 
+        //loging to a file
+
         $end_time = microtime(true);
         $filename = 'api_datalogger_' . date('d-m-y') . '.log';
         $data = 'Time: ' . gmdate("F j, Y, g:i a") . "\n";
