@@ -46,8 +46,27 @@ class NgaoController extends Controller
         // dd($request);
 
 
-        $input = $request->all();
-        print_r($input);die();
+        // $input = $request->all();
+        // print_r($input);die();
+
+        $end_time = microtime(true);
+        $filename = 'api_datalogger_' . date('d-m-y') . '.log';
+        $data = 'Time: ' . gmdate("F j, Y, g:i a") . "\n";
+        $data .= 'Duration: ' . number_format($end_time - LARAVEL_START, 3) . "\n";
+        $data .= 'IP Address: ' . $request->ip() . "\n";
+        $data .= 'URL: ' . $request->fullUrl() . "\n";
+        $data .= 'Method: ' . $request->method() . "\n";
+        $data .= 'Input: ' . $request->getContent() . "\n";
+
+        \File::append(storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $data . "\n" . str_repeat("=", 20) . "\n\n");
+
+
+        try {
+
+
+
+
+
         $number = Advance::where('session_id', '=', $request->session_id)->first();
         // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 
@@ -118,6 +137,11 @@ class NgaoController extends Controller
             }else{
                 return "Please select a valid confirmation. Thank You.";
             }
+
+        } catch (Exception $e) {
+
+            return 'FAILED';
+        }
 
             }
 
