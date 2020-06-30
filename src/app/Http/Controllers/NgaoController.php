@@ -84,7 +84,7 @@ class NgaoController extends Controller
             // $ngao->session_id = $request->input('session_id');
             $ngao->session_id = isset($input['session_id']) ? $input['session_id'] : '';
             // $ngao->Amount = $request->input('Amount');
-            $ngao->Amount = isset($input['Amount']) ? $input['Amount'] : '';
+            $ngao->Amount = isset($input['Amount']) ? $input['Amount'] : ''; 
             // $ngao->id_number = $request->input('id_number');
             $ngao->id_number = isset($input['id_number']) ? $input['id_number'] : '';
             $ngao->Description = "ADVANCE";
