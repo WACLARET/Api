@@ -23,7 +23,7 @@ class CreateAdvancesTable extends Migration
             $table->char('description');
             $table->integer('loanterm');
             $table->char('confirm');
-            $table->char('refno');
+            $table->char('refno'); 
             $table->timestamps();
         });
     }
