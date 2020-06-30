@@ -64,7 +64,9 @@ class NgaoController extends Controller
         try {
 
 
+            $input = $request->all();
 
+            // $ipn->BillRefNumber = isset($input['BillRefNumber']) ? $input['BillRefNumber'] : '';
 
 
         $number = Advance::where('session_id', '=', $request->session_id)->first();
@@ -77,22 +79,32 @@ class NgaoController extends Controller
 
         // $ngao->ngao_id = $request->input('ngao_id');
         if($id == 1){
-            $ngao->msisdn = $request->input('msisdn');
-            $ngao->session_id = $request->input('session_id');
-            $ngao->Amount = $request->input('Amount');
-            $ngao->id_number = $request->input('id_number');
+            // $ngao->msisdn = $request->input('msisdn');
+            $ngao->msisdn = isset($input['msisdn']) ? $input['msisdn'] : '';
+            // $ngao->session_id = $request->input('session_id');
+            $ngao->session_id = isset($input['session_id']) ? $input['session_id'] : '';
+            // $ngao->Amount = $request->input('Amount');
+            $ngao->Amount = isset($input['Amount']) ? $input['Amount'] : '';
+            // $ngao->id_number = $request->input('id_number');
+            $ngao->id_number = isset($input['id_number']) ? $input['id_number'] : '';
             $ngao->Description = "ADVANCE";
             $ngao->loanterm = 15;
-            $ngao->confirm = $request->input('confirm'); 
+            // $ngao->confirm = $request->input('confirm'); 
+            $ngao->confirm = isset($input['confirm']) ? $input['confirm'] : '';
             $ngao ->refno = 'LN' . substr(md5(uniqid(rand(), true)),0,10); 
         }else{
-            $ngao->msisdn = $request->input('msisdn');
-            $ngao->session_id = $request->input('session_id');
-            $ngao->Amount = $request->input('Amount');
-            $ngao->id_number = $request->input('id_number');
+            // $ngao->msisdn = $request->input('msisdn');
+            $ngao->msisdn = isset($input['msisdn']) ? $input['msisdn'] : '';
+            // $ngao->session_id = $request->input('session_id');
+            $ngao->session_id = isset($input['session_id']) ? $input['session_id'] : '';
+            // $ngao->Amount = $request->input('Amount');
+            $ngao->Amount = isset($input['Amount']) ? $input['Amount'] : '';
+            // $ngao->id_number = $request->input('id_number');
+            $ngao->id_number = isset($input['id_number']) ? $input['id_number'] : '';
             $ngao->Description = "ADVANCE";
             $ngao->loanterm = 30;
-            $ngao->confirm = $request->input('confirm'); 
+            // $ngao->confirm = $request->input('confirm'); 
+            $ngao->confirm = isset($input['confirm']) ? $input['confirm'] : '';
             $ngao ->refno = 'LN' . substr(md5(uniqid(rand(), true)),0,10); 
         }
 
