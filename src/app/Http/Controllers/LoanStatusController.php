@@ -24,7 +24,7 @@ class LoanStatusController extends Controller
         $message = new Top_up;
         $message->msisdn = $request->input('msisdn');
         // dd($message);
-        
+         
         // dd($Check_number);
         // $ngao = Status::paginate(15);
         // $withdraw = DB::table('top_ups')->get();
@@ -33,13 +33,16 @@ class LoanStatusController extends Controller
         $Status_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('status');
         $total_topups =  DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->sum();
         $total_advance =  DB::table('advances')->where('msisdn', '=', $request->msisdn)->pluck('Amount')->sum();
+        $createdate_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('created_at');
+        $loanterm_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('loanterm');
         // $total_topups =  DB::table('top_ups')->where('msisdn', '=', 255720711386)->get();
-        // dd($Status_advance);
+        // dd($createdate_advance);
+        $test = date('Y-m-d', strtotime($createdate_advance. ' + 10 days'));
         // $test = Table::select('name','surname')->where('id', 1)->get();
-// dd($withdraw);
+dd($createdate_advance, $test);
         $loanbalance = $total_topups + $total_advance;
         // return($withdraw);
-        return "Your loan is a $Status_advance loan, loanbalance is Ksh.$loanbalance ";
+        return "Your loan is a $Status_advance loan, loanbalance is Ksh.$loanbalance, loan due date $createdate_advance ";
     }
 
     /**

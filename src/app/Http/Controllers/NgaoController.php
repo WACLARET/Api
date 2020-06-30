@@ -46,8 +46,8 @@ class NgaoController extends Controller
         // dd($request);
 
 
-        // $input = $request->all();
-        // print_r($input);die();
+        $input = $request->all();
+        print_r($input);die();
         $number = Advance::where('session_id', '=', $request->session_id)->first();
         // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 
