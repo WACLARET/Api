@@ -52,8 +52,8 @@ class LoanStatusController extends Controller
               $number = Advance::where('msisdn', '=', $request->msisdn)->first();
         // dd($number);
         // $ngao = Status::paginate(15);
-        $withdraw = DB::table('advances')->get();
-        dd($withdraw);
+        // $withdraw = DB::table('advances')->get();
+        // dd($withdraw);
         // $withdraw = DB::table('ussds')->value('refno');
         $Status_topups = DB::table('top_ups')->where('msisdn', '=', $request->msisdn)->value('status');
         $Status_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('status');
