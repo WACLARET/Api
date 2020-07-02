@@ -21,6 +21,9 @@ class LoanStatusController extends Controller
     {
         // dd($request);
         // print_r($request);die();
+        $message = new Advance;
+        $message->msisdn = $request->input('msisdn');
+
         $message = new Top_up;
         $message->msisdn = $request->input('msisdn');
         // dd($message);
