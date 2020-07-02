@@ -49,8 +49,8 @@ class LoanStatusController extends Controller
 
 
 
-
-        // dd($Check_number);
+              $number = Advance::where('msisdn', '=', $request->msisdn)->first();
+        // dd($number);
         // $ngao = Status::paginate(15);
         // $withdraw = DB::table('top_ups')->get();
         // $withdraw = DB::table('ussds')->value('refno');
@@ -62,10 +62,14 @@ class LoanStatusController extends Controller
         $loanterm_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('loanterm');
         // $total_topups =  DB::table('top_ups')->where('msisdn', '=', 255720711386)->get();
         // dd($loanterm_advance);
-        if($loanterm_advance == 15){
-            $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 15 days'));
+        if($number){
+            if($loanterm_advance == 15){
+                $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 15 days'));
+            }else{
+                $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 30 days'));
+            }
         }else{
-            $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 30 days'));
+            return "Record not found. Thank you";
         }
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($createdate_advance, $test);
