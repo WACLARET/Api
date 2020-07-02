@@ -16,7 +16,7 @@ class CreateAdvancesTable extends Migration
         Schema::create('advances', function (Blueprint $table) {
             $table->increments('id');
             $table->char('session_id')->unique();
-            $table->integer('msisdn')->unique();
+            $table->char('msisdn')->unique();
             $table->char('status')->default('CURRENT');
             $table->integer('Amount');
             $table->char('id_number');

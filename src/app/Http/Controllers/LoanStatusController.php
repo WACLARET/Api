@@ -64,7 +64,7 @@ class LoanStatusController extends Controller
         // dd($loanterm_advance);
         if($loanterm_advance == 15){
             $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 15 days'));
-        }if($loanterm_advance == 30){
+        }else{
             $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 30 days'));
         }
         // $test = Table::select('name','surname')->where('id', 1)->get();
