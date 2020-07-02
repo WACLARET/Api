@@ -70,8 +70,8 @@ class LoanStatusController extends Controller
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($createdate_advance, $test);
         $loanbalance = $total_topups + $total_advance;
-        return($loanbalance);
-        return "Your loan is a CURRENT $Status_advance loan, loanbalance is Ksh.$loanbalance, loan due date $loanduedate ";
+        // return($withdraw);loanbalance is Ksh.$loanbalance,
+        return "Your loan is a CURRENT $Status_advance loan, loan due date $loanduedate ";
 
     } catch (Exception $e) {
 
