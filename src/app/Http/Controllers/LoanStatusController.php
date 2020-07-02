@@ -69,7 +69,7 @@ class LoanStatusController extends Controller
             }else{
                 $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 30 days'));
             }
-        }else{
+        }if(!$number){
             return "Record not found. Thank you";
         }
         // $test = Table::select('name','surname')->where('id', 1)->get();
