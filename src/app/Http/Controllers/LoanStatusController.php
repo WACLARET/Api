@@ -21,12 +21,36 @@ class LoanStatusController extends Controller
     {
         // dd($request);
         // print_r($request);die();
-        $message = new Advance;
-        $message->msisdn = $request->input('msisdn');
+        // $message = new Advance;
+        // $message->msisdn = $request->input('msisdn');
 
-        $message = new Top_up;
-        $message->msisdn = $request->input('msisdn');
+        // $message = new Top_up;
+        // $message->msisdn = $request->input('msisdn');
         // dd($message);
+
+
+          //loging to a file
+
+          $end_time = microtime(true);
+          $filename = 'api_datalogger_' . date('d-m-y') . '.log';
+          $data = 'Time: ' . gmdate("F j, Y, g:i a") . "\n";
+          $data .= 'Duration: ' . number_format($end_time - LARAVEL_START, 3) . "\n";
+          $data .= 'IP Address: ' . $request->ip() . "\n";
+          $data .= 'URL: ' . $request->fullUrl() . "\n";
+          $data .= 'Method: ' . $request->method() . "\n";
+          $data .= 'Input: ' . $request->getContent() . "\n";
+  
+          \File::append(storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $data . "\n" . str_repeat("=", 20) . "\n\n");
+  
+  
+          try {
+  
+  
+              $input = $request->all();
+
+
+
+
          
         // dd($Check_number);
         // $ngao = Status::paginate(15);
@@ -50,6 +74,13 @@ class LoanStatusController extends Controller
         $loanbalance = $total_topups + $total_advance;
         // return($withdraw);
         return "Your loan is a $Status_advance loan, loanbalance is Ksh.$loanbalance, loan due date $loanduedate ";
+    
+    } catch (Exception $e) {
+
+        return 'FAILED';
+    }
+
+
     }
 
     /**
