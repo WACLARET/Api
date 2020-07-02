@@ -71,7 +71,7 @@ class NgaoController extends Controller
             // $ipn->BillRefNumber = isset($input['BillRefNumber']) ? $input['BillRefNumber'] : '';
 
 
-        $number = Advance::where('session_id', '=', $request->session_id)->first();
+        $number = Advance::where('msisdn', '=', $request->msisdn)->first();
         // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 
         // dd($user);
