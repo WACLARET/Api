@@ -75,7 +75,7 @@ class NgaoController extends Controller
         // $number = Top_up::where('msisdn', '=', $request->msisdn)->first();
 
         // dd($user);
-        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Advance;
+        $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->msisdn) : new Advance;
         // $ngao = $request->isMethod('put') ? Ussddata::findOrFail($request->session_id) : new Top_up;
 
 

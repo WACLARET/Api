@@ -39,19 +39,17 @@ class LoanStatusController extends Controller
           $data .= 'URL: ' . $request->fullUrl() . "\n";
           $data .= 'Method: ' . $request->method() . "\n";
           $data .= 'Input: ' . $request->getContent() . "\n";
-  
+
           \File::append(storage_path('logs' . DIRECTORY_SEPARATOR . $filename), $data . "\n" . str_repeat("=", 20) . "\n\n");
-  
-  
+
           try {
-  
-  
+
               $input = $request->all();
 
 
 
 
-         
+
         // dd($Check_number);
         // $ngao = Status::paginate(15);
         // $withdraw = DB::table('top_ups')->get();
@@ -72,9 +70,9 @@ class LoanStatusController extends Controller
         // $test = Table::select('name','surname')->where('id', 1)->get();
 // dd($createdate_advance, $test);
         $loanbalance = $total_topups + $total_advance;
-        // return($withdraw);
-        return "Your loan is a $Status_advance loan, loanbalance is Ksh.$loanbalance, loan due date $loanduedate ";
-    
+        return($loanbalance);
+        return "Your loan is a CURRENT $Status_advance loan, loanbalance is Ksh.$loanbalance, loan due date $loanduedate ";
+
     } catch (Exception $e) {
 
         return 'FAILED';
