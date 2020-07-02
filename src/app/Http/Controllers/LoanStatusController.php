@@ -62,6 +62,7 @@ class LoanStatusController extends Controller
         $loanterm_advance = DB::table('advances')->where('msisdn', '=', $request->msisdn)->value('loanterm');
         // $total_topups =  DB::table('top_ups')->where('msisdn', '=', 255720711386)->get();
         // dd($loanterm_advance);
+        if($number){
         if($loanterm_advance == 15){
             $loanduedate = date('Y-m-d', strtotime($createdate_advance. ' + 15 days'));
         }else{
@@ -72,6 +73,9 @@ class LoanStatusController extends Controller
         $loanbalance = $total_topups + $total_advance;
         // return($withdraw);loanbalance is Ksh.$loanbalance,
         return "Your loan is a CURRENT $Status_advance loan, loan due date $loanduedate ";
+    }else{
+        return "Record not found. Thank you";
+    }
 
     } catch (Exception $e) {
 
