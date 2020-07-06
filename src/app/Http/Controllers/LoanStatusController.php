@@ -162,7 +162,7 @@ if($check_number OR $checkno_advance){
 
             //return data in table as a mini statement
 
-            $header = "|Date  and time  |Description |Amount|Status|Transation refno" . "\n";
+            $header = "|Date  and time  |Description |Amount|Status|Transaction refno" . "\n";
 
             foreach ($advance_data as $datastatus) {
                 // dd($datastatus->Amount);
@@ -189,7 +189,7 @@ if($check_number OR $checkno_advance){
                 return($header);
 
             }else{
-                $header = "|Date  and time  |Description |Amount|Status|Transation refno" . "\n";
+                $header = "|Date  and time  |Description |Amount|Status|Transaction refno" . "\n";
                 return $header;
             }
     }
